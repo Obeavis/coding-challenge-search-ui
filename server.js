@@ -1,9 +1,11 @@
 const express = require('express');
 const { readFile } = require('fs');
 const { join } = require('path');
+const cors = require('cors');
 const Fuse = require('fuse.js');
 
 const app = express();
+app.use(cors())
 const PORT = 3001;
 
 app.get('/api/data', (req, res) => {
