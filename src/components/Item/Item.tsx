@@ -4,9 +4,10 @@ const handleClick = (url: string) => {
 	window.open(url, "_blank", "noopener,noreferrer");
 };
 
-const Item = ({ title, description, category, url }: SearchResult) => {
+const Item = ({ title, description, category, url, id }: SearchResult) => {
 	return (
 		<Card
+			data-testid={id}
 			className="cursor-pointer transition duration-300 hover:scale-105"
 			onClick={() => handleClick(url)}
 		>

@@ -14,7 +14,10 @@ const Header = ({ onButtonClick }: HeaderProps) => {
 		onButtonClick(searchText);
 	};
 	return (
-		<header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur">
+		<header
+			className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur"
+			data-testid="header"
+		>
 			<div className="container flex flex-col items-center py-3 gap-4 md:flex-row">
 				<div className="flex flex-col w-44 items-center justify-center bg-primary text-black font-bold rounded-lg min-h-10">
 					<span>Coding Challenge</span>
@@ -24,6 +27,7 @@ const Header = ({ onButtonClick }: HeaderProps) => {
 					onSubmit={handleSubmit}
 				>
 					<Input
+						data-testid="search-input"
 						type="text"
 						className="px-3 py-2 w-full focus-visible:ring-secondary"
 						placeholder="Search..."
