@@ -1,21 +1,32 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getData } from "src/services/apiService";
 
 import Header from "src/components/Header";
+import ItemsWrapper from "src/containers/ItemsWrapper";
+import Spinner from "src/components/Spinner";
 
 const Home = () => {
-	const { data } = useSuspenseQuery({
-		queryKey: ["items"],
-		queryFn: () => getData(""),
+	const [search, setSearch] = useState("");
+	const { data, isLoading, isSuccess } = useQuery({
+		queryKey: ["items", search],
+		queryFn: () => getData(search),
 	});
 
-	console.log("data: ", data);
+	const items = data?.data as SearchResult[];
+
 	return (
 		<>
-			<Header />
-			{/* <div className="container my-10">
-					<ItemsWrapper items={items} />
-				</div> */}
+			<Header onButtonClick={(text) => setSearch(text)} />
+			<div className="container my-10">
+				{isLoading && <Spinner />}
+				<ItemsWrapper items={items} />
+				{isSuccess && !items.length && (
+					<div className="flex justify-center">
+						<p>There are no results matching your query.</p>
+					</div>
+				)}
+			</div>
 		</>
 	);
 };

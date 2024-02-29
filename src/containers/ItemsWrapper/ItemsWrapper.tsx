@@ -1,7 +1,7 @@
-import Item from "../../components/Item";
+import Item from "src/components/Item";
 
 interface ItemsWrapperProps {
-	items: SearchResult[];
+	items: SearchResult[] | [];
 }
 
 const ItemsWrapper = ({ items }: ItemsWrapperProps) => {
